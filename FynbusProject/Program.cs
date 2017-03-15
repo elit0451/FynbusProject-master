@@ -10,6 +10,12 @@ namespace FynbusProject
     {
         static void Main(string[] args)
         {
+            new FynbusProject.Program().Run();
+        }
+
+        private void Run()
+        {
+
         }
     }
 }
