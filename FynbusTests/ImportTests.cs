@@ -10,13 +10,10 @@ namespace FynbusTests
         [TestMethod]
         public void ImportOfferFile()
         {
-            string contractorFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Stamoplysninger_Skabelon.csv";
-            bool contractorFile = CSVImport.Import(contractorFilepath);
 
-            string offerFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Tilbud_Skabelon.csv";
-            bool offerFile = CSVImport.Import(offerFilepath);
-
-            Assert.IsFalse(contractorFile);
+            string offerFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
+            bool offerFile = CSVImport.Instance.Import(offerFilepath,fileType.OFFERS);
+            
             Assert.IsTrue(offerFile);
         }
     }

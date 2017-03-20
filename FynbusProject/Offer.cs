@@ -8,15 +8,17 @@ namespace FynbusProject
 {
     class Offer
     {
-        private int _id;
-        private int _vehicleType;
-        private int _availableHours;
+        public string Id { get; set; }
+        public int VehicleType { get; set; }
+        public int AvailableHours { get; set; }
+        public double Price { get; set; }
 
-        public Offer(int id, int vehType, int avaHours)
+        public Offer(string id, int vehType, int avaHours, double price)
         {
-            _id = id;
-            _vehicleType = vehType;
-            _availableHours = avaHours;
+            Id = id;
+            VehicleType = vehType;
+            AvailableHours = avaHours;
+            Price = price;
         }
     }
 }
