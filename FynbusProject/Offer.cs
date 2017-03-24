@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FynbusProject
+﻿namespace FynbusProject
 {
-    class Offer
+    public class Offer
     {
-        public string Id { get; set; }
-        public int VehicleType { get; set; }
-        public int AvailableHours { get; set; }
-        public double Price { get; set; }
+        public string Id { get; private set; }
+        public int VehicleType { get; private set; }
+        public int AvailableHours { get; private set; }
+        public double Price { get; private set; }
 
         public Offer(string id, int vehType, int avaHours, double price)
         {

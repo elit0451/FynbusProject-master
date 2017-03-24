@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FynbusProject
+﻿namespace FynbusProject
 {
-    class Route
+    public class Route
     {
-        private int _routeNumber;
-        private int _vehicleType;
+        public int RouteNumber { get; private set; }
+        public int VehicleType { get; private set; }
 
         public Route(int routeNb, int vehType)
         {
-            _routeNumber = routeNb;
-            _vehicleType = vehType;
+            RouteNumber = routeNb;
+            VehicleType = vehType;
         }
     }
 }
