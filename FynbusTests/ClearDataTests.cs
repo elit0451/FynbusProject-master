@@ -1,5 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FynbusProject;
+﻿using FynbusProject;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FynbusTests
 {
@@ -10,7 +10,7 @@ namespace FynbusTests
     public class ClearDataTests
     {
         [TestMethod]
-        public void ClearDataFromImportedFiles()
+        public void CanClearDataFromImportedFiles()
         {
 
             string offerFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
@@ -19,7 +19,6 @@ namespace FynbusTests
             Assert.IsTrue(offerFile);
 
             Assert.IsTrue(CSVImport.Instance.ClearData());
-
 
         }
     }

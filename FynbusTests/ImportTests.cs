@@ -1,6 +1,5 @@
-﻿using System;
+﻿using FynbusProject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FynbusProject;
 
 namespace FynbusTests
 {
@@ -18,13 +17,17 @@ namespace FynbusTests
         }
 
         [TestMethod]
-        public void ImportContractorFile()
+        public void CanImportContractorFile()
         {
 
             string contractorFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Stamoplysninger_FakeData.csv";
             bool contractorFile = CSVImport.Instance.Import(contractorFilepath, fileType.CONTRACTORS);
 
+            string contractorFilePath_wrong = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
+            bool wrongDataformat = CSVImport.Instance.Import(contractorFilePath_wrong, fileType.OFFERS);
+
             Assert.IsTrue(contractorFile);
+            Assert.IsFalse(contractorFile);
         }
     }
 }
