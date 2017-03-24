@@ -13,21 +13,23 @@ namespace FynbusProject
     public class CSVImport
     {
         private List<Offer> listOfOffers;
+        private List<Contractor> listOfContractors;
 
         private static CSVImport instance;
 
         private CSVImport()
         {
             listOfOffers = new List<Offer>();
+            listOfContractors = new List<Contractor>();
         }
 
         public static CSVImport Instance
         {
             get
             {
-                if (instance == null)
                 {
-                    instance = new CSVImport();
+                    if (instance == null)
+                        instance = new CSVImport();
                 }
                 return instance;
             }
@@ -89,6 +91,21 @@ namespace FynbusProject
             }
 
             return isOfferData;
+        }
+
+        public bool ClearData()
+        {
+            bool dataCleared = false;
+
+            listOfOffers.Clear();
+            listOfContractors.Clear();
+
+            if (listOfOffers.Count == 0 && listOfContractors.Count == 0)
+            {
+                dataCleared = true;
+            }
+
+            return dataCleared;
         }
     }
 }

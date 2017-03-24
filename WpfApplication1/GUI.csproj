@@ -99,6 +99,12 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FynbusProject\FynbusProject.csproj">
+      <Project>{257b5a00-987a-4a82-a8e0-1c3ad432c02e}</Project>
+      <Name>FynbusProject</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
