@@ -18,6 +18,8 @@ namespace GUI
             textBox_BasicData.Text = string.Empty;
             textBox_OfferData.Text = string.Empty;
             textBox_Routes.Text = string.Empty;
+            button_ExportCsv.IsEnabled = false;
+            button_ExportPdf.IsEnabled = false;
             bool dataCleared = CSVImport.Instance.ClearData();
 
             if(dataCleared)

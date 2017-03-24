@@ -43,17 +43,17 @@ namespace FynbusProject
             switch (ft)
             {
                 case fileType.OFFERS:
-                    importSucessful = importOffers(filepath);
+                    importSucessful = ImportOffers(filepath);
                     break;
                 case fileType.CONTRACTORS:
-                    importSucessful = importContractors(filepath);
+                    importSucessful = ImportContractor(filepath);
                     break;
                 default: throw new Exception("File Type doesn't exist!");
             }
             return importSucessful;
         }
 
-        private bool importContractors(string filepath)
+        private bool ImportContractor(string filepath)
         {
             bool isContractorData = false;
 
@@ -94,7 +94,7 @@ namespace FynbusProject
             return isContractorData;
         }
 
-        private bool importOffers(string filepath)
+        private bool ImportOffers(string filepath)
         {
             bool isOfferData = false;
 
