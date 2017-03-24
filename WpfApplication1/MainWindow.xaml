@@ -18,20 +18,20 @@
         <Label x:Name="label" Content="FynBus Procurement Application&#xD;&#xA;" HorizontalAlignment="Left" Margin="49,14,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="Bold" Height="36" FontFamily="Lato Heavy"/>
         <Label x:Name="label_BasicData" Content="Basic data:" HorizontalAlignment="Left" Margin="49,50,0,0" VerticalAlignment="Top" Height="27"/>
         <Label x:Name="label_OfferData" Content="Offer data:" HorizontalAlignment="Left" Margin="49,95,0,0" VerticalAlignment="Top" Height="27"/>
-        <ListView x:Name="listView" HorizontalAlignment="Left" Height="164" Margin="49,0.4,0,0" VerticalAlignment="Top" Width="609" Grid.Row="1">
+        <ListView x:Name="lstViewWinners" HorizontalAlignment="Left" Height="164" Margin="49,0.4,0,0" VerticalAlignment="Top" Width="609" Grid.Row="1">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="button_Copy1" Content="Import" HorizontalAlignment="Left" Margin="583,206,0,0" VerticalAlignment="Top" Width="75" Height="18" Grid.RowSpan="2"/>
-        <Button x:Name="button_Copy2" Content="PDF" HorizontalAlignment="Left" Margin="504,221,0,0" VerticalAlignment="Top" Width="64" Height="22" Click="button_Copy2_Click" Grid.Row="1"/>
-        <Button x:Name="button_Copy3" Content="Calculate the winners" HorizontalAlignment="Left" Margin="526,181,0,0" VerticalAlignment="Top" Width="121" Height="22" Grid.Row="1"/>
-        <Label x:Name="label_Copy2" Content="Routes:" HorizontalAlignment="Left" Margin="49,139,0,0" VerticalAlignment="Top" Height="27"/>
-        <TextBox x:Name="textBox_Copy1" HorizontalAlignment="Left" Height="18" Margin="49,165,0,0" TextWrapping="Wrap" Text="C:\" VerticalAlignment="Top" Width="529"/>
-        <Button x:Name="button_Copy4" Content="Choose.." HorizontalAlignment="Left" Margin="583,165,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.397,2.771"/>
-        <Label x:Name="label_BasicData_Copy" Content="Export to:" HorizontalAlignment="Left" Margin="438,221,0,0" VerticalAlignment="Top" Height="27" Grid.Row="1"/>
-        <Button x:Name="button_Copy" Content="Excel" HorizontalAlignment="Left" Margin="583,221,0,0" VerticalAlignment="Top" Width="64" Height="22" Click="button_Copy2_Click" Grid.Row="1"/>
+        <Button x:Name="button_Import" Content="Import" HorizontalAlignment="Left" Margin="583,206,0,0" VerticalAlignment="Top" Width="75" Height="18" Grid.RowSpan="2"/>
+        <Button x:Name="button_ExportPdf" Content="PDF" HorizontalAlignment="Left" Margin="504,221,0,0" VerticalAlignment="Top" Width="64" Height="22" Click="button_Copy2_Click" Grid.Row="1"/>
+        <Button x:Name="button_CalculateWinners" Content="Calculate the winners" HorizontalAlignment="Left" Margin="526,181,0,0" VerticalAlignment="Top" Width="121" Height="22" Grid.Row="1"/>
+        <Label x:Name="label_Routes" Content="Routes:" HorizontalAlignment="Left" Margin="49,139,0,0" VerticalAlignment="Top" Height="27"/>
+        <TextBox x:Name="textBox_Routes" HorizontalAlignment="Left" Height="18" Margin="49,165,0,0" TextWrapping="Wrap" Text="C:\" VerticalAlignment="Top" Width="529"/>
+        <Button x:Name="button_ChooseRoutes" Content="Choose.." HorizontalAlignment="Left" Margin="583,165,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="0.397,2.771"/>
+        <Label x:Name="label_ExportTo" Content="Export to:" HorizontalAlignment="Left" Margin="438,221,0,0" VerticalAlignment="Top" Height="27" Grid.Row="1"/>
+        <Button x:Name="button_ExportCsv" Content="Excel" HorizontalAlignment="Left" Margin="583,221,0,0" VerticalAlignment="Top" Width="64" Height="22" Click="button_Copy2_Click" Grid.Row="1"/>
     </Grid>
 </Window>
