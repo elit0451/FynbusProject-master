@@ -1,33 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FynbusProject
+﻿namespace FynbusProject
 {
-    class Contractor
+    public class Contractor
     {
-        private string _companyName;
-        private string _personName;
-        private string _emailAddress;
-        private int _typeV2;
-        private int _typeV3;
-        private int _typeV5;
-        private int _typeV6;
-        private int _typeV7;
+        public string CompanyName { get; private set; }
+        public string PersonName { get; private set; }
+        public string EmailAddress { get; private set; }
+        public int TypeV2 { get; private set; }
+        public int TypeV3 { get; private set; }
+        public int TypeV5 { get; private set; }
+        public int TypeV6 { get; private set; }
+        public int TypeV7 { get; private set; }
 
 
         public Contractor(string compName, string persName, string email, int t2, int t3, int t5, int t6, int t7)
         {
-            _companyName = compName;
-            _personName = persName;
-            _emailAddress = email;
-            _typeV2 = t2;
-            _typeV3 = t3;
-            _typeV5 = t5;
-            _typeV6 = t6;
-            _typeV7 = t7;
+            CompanyName = compName;
+            PersonName = persName;
+            EmailAddress = email;
+            TypeV2 = t2;
+            TypeV3 = t3;
+            TypeV5 = t5;
+            TypeV6 = t6;
+            TypeV7 = t7;
         }
     }
 }
