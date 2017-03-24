@@ -2,6 +2,7 @@
 {
     public class Contractor
     {
+        public string Number { get; private set; }
         public string CompanyName { get; private set; }
         public string PersonName { get; private set; }
         public string EmailAddress { get; private set; }
@@ -12,8 +13,9 @@
         public int TypeV7 { get; private set; }
 
 
-        public Contractor(string compName, string persName, string email, int t2, int t3, int t5, int t6, int t7)
+        public Contractor(string number, string compName, string persName, string email, int t2, int t3, int t5, int t6, int t7)
         {
+            Number = number;
             CompanyName = compName;
             PersonName = persName;
             EmailAddress = email;
