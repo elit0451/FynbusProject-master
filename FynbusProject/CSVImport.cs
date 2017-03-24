@@ -1,41 +1,94 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Text;
-using System.Threading.Tasks;
 
+public enum fileType
+{
+    OFFERS,
+    CONTRACTORS
+}
 namespace FynbusProject
 {
-    public static class CSVImport
+    public class CSVImport
     {
-        public static bool Import(string filepath)
+        private List<Offer> listOfOffers;
+
+        private static CSVImport instance;
+
+        private CSVImport()
         {
-            bool importSucessful;
-            string typeOfFile = CheckTypeOfFile(filepath);
-            if(typeOfFile == "Offer")
+            listOfOffers = new List<Offer>();
+        }
+
+        public static CSVImport Instance
+        {
+            get
             {
-                importSucessful = true;
+                if (instance == null)
+                {
+                    instance = new CSVImport();
+                }
+                return instance;
             }
-            else
+        }
+
+        public bool Import(string filepath, fileType ft)
+        {
+            bool importSucessful = false; ;
+
+
+            switch (ft)
             {
-                importSucessful = false;
+                case fileType.OFFERS:
+                    importSucessful = importOffers(filepath);
+                    break;
+                case fileType.CONTRACTORS:
+                    importSucessful = importContractors(filepath);
+                    break;
+                default: throw new Exception("File Type doesn't exist!");
             }
             return importSucessful;
         }
 
-        private static string CheckTypeOfFile(string filepath)
+        private bool importContractors(string filepath)
         {
-            string fileType = "";
-            if(filepath.EndsWith("Tilbud_Skabelon.csv"))
+            throw new NotImplementedException();
+        }
+
+        private bool importOffers(string filepath)
+        {
+            bool isOfferData = false;
+
+            //Get all the info from the CSV file
+            string[] data = File.ReadAllLines(filepath, Encoding.GetEncoding("iso-8859-1"));
+
+            //Check if this is a header for the offers
+            if (data[0] == "Nummer;Garantivognsnummer;Pris;navn;Virksomhedsnavn;BrugerID;Rutenummer prioritet;Entreprenør prioriter;")
             {
-                fileType = "Offer";
-            }
-            else if(filepath.EndsWith("Stamoplysninger_Skabelon.csv"))
-            {
-                fileType = "Contractors";
+                isOfferData = true;
             }
 
-            return fileType;
+            if (isOfferData == true)
+            {
+                //Go through every row on the CSV file data after the headers (i=1)
+                for (int i = 1; i < data.Length; i++)
+                {
+                    string row = data[i];
+                    //Get every collumn in that row
+                    string[] collumns = row.Split(';');
+
+                    string offerId = collumns[0];
+                    int vehicleType = int.Parse(collumns[1]);
+                    int hoursAvailable = 10; // ??
+                    double price = double.Parse(collumns[2]);
+
+                    Offer newOffer = new Offer(offerId, vehicleType, hoursAvailable, price);
+                    listOfOffers.Add(newOffer);
+                }
+            }
+
+            return isOfferData;
         }
     }
 }
