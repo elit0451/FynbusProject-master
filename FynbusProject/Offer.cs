@@ -3,16 +3,18 @@
     public class Offer
     {
         public string Id { get; private set; }
-        public int VehicleType { get; private set; }
+        public int RouteNumber { get; private set; }
         public int AvailableHours { get; private set; }
         public double Price { get; private set; }
+        public Contractor OfferContractor { get; private set; }
 
-        public Offer(string id, int vehType, int avaHours, double price)
+        public Offer(string id, int routeNumber, int avaHours, double price, Contractor cont)
         {
             Id = id;
-            VehicleType = vehType;
+            RouteNumber = routeNumber;
             AvailableHours = avaHours;
             Price = price;
+            OfferContractor = cont;
         }
     }
 }

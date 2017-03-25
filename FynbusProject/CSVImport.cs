@@ -6,21 +6,24 @@ using System.Text;
 public enum fileType
 {
     OFFERS,
-    CONTRACTORS
+    CONTRACTORS,
+    ROUTES
 }
 namespace FynbusProject
 {
     public class CSVImport
     {
-        private List<Offer> listOfOffers;
-        private List<Contractor> listOfContractors;
+        public List<Offer> ListOfOffers { get; private set; }
+        public Dictionary<string, Contractor> ListOfContractors { get; private set; }
+        public Dictionary<int,Route> ListOfRoutes { get; private set; }
 
         private static CSVImport instance;
 
         private CSVImport()
         {
-            listOfOffers = new List<Offer>();
-            listOfContractors = new List<Contractor>();
+            ListOfOffers = new List<Offer>();
+            ListOfContractors = new Dictionary<string, Contractor>();
+            ListOfRoutes = new Dictionary<int, Route>();
         }
 
         public static CSVImport Instance
@@ -43,14 +46,51 @@ namespace FynbusProject
             switch (ft)
             {
                 case fileType.OFFERS:
-                    importSucessful = ImportOffers(filepath);
+                    importSucessful = ImportOffer(filepath);
                     break;
                 case fileType.CONTRACTORS:
                     importSucessful = ImportContractor(filepath);
                     break;
+                case fileType.ROUTES:
+                    importSucessful = ImportRoute(filepath);
+                    break;
                 default: throw new Exception("File Type doesn't exist!");
             }
             return importSucessful;
+        }
+
+        private bool ImportRoute(string filepath)
+        {
+            bool isRouteData = false;
+
+            //Get all the info from the CSV file
+            string[] data = File.ReadAllLines(filepath, Encoding.GetEncoding("iso-8859-1"));
+
+            
+            //Check if this is a header for the Route
+            if (data[0].Contains("Garanti-vogn nr.;Vogntype"))
+            {
+                isRouteData = true;
+            }
+
+            if (isRouteData == true)
+            {
+                //Go through every row on the CSV file data after the headers (i=1)
+                for (int i = 1; i < data.Length; i++)
+                {
+                    string row = data[i];
+                    //Get every collumn in that row
+                    string[] collumns = row.Split(';');
+
+                    int routeNr  = int.Parse(collumns[0]);
+                    int vehType = int.Parse(collumns[1]);
+                    
+                    Route newRoute = new Route(routeNr, vehType);
+                    ListOfRoutes.Add(routeNr, newRoute);
+                }
+            }
+
+            return isRouteData;
         }
 
         private bool ImportContractor(string filepath)
@@ -60,8 +100,8 @@ namespace FynbusProject
             //Get all the info from the CSV file
             string[] data = File.ReadAllLines(filepath, Encoding.GetEncoding("iso-8859-1"));
 
-            //Check if this is a header for the offers
-            if (data[0] == "Nummer;Navn;Virksomhedsnavn;BrugerID;Vedståelse v2;Vedståelse v3;Vedståelse v5;Vedståelse v6;Vedståelse v7;")
+            //Check if this is a header for the Contractor
+            if (data[0].Contains("Nummer;Navn;Virksomhedsnavn;BrugerID;Vedståelse v2;Vedståelse v3;Vedståelse v5;Vedståelse v6;Vedståelse v7;"))
             {
                 isContractorData = true;
             }
@@ -87,14 +127,14 @@ namespace FynbusProject
 
 
                     Contractor newContractor = new Contractor(number, companyName, name, email, type2, type3, type5, type6, type7);
-                    listOfContractors.Add(newContractor);
+                    ListOfContractors.Add(email, newContractor);
                 }
             }
 
             return isContractorData;
         }
 
-        private bool ImportOffers(string filepath)
+        private bool ImportOffer(string filepath)
         {
             bool isOfferData = false;
 
@@ -102,7 +142,7 @@ namespace FynbusProject
             string[] data = File.ReadAllLines(filepath, Encoding.GetEncoding("iso-8859-1"));
 
             //Check if this is a header for the offers
-            if (data[0] == "Nummer;Garantivognsnummer;Pris;navn;Virksomhedsnavn;BrugerID;Rutenummer prioritet;Entreprenør prioriter;")
+            if (data[0].Contains("Nummer;Garantivognsnummer;Pris;navn;Virksomhedsnavn;BrugerID;Rutenummer prioritet;Entreprenør prioriter"))
             {
                 isOfferData = true;
             }
@@ -117,12 +157,15 @@ namespace FynbusProject
                     string[] collumns = row.Split(';');
 
                     string offerId = collumns[0];
-                    int vehicleType = int.Parse(collumns[1]);
+                    int routeNumber = int.Parse(collumns[1]);
                     int hoursAvailable = 10; // ??
                     double price = double.Parse(collumns[2]);
+                    string contractorEmail = collumns[5];
+                    Contractor contractor = ListOfContractors[contractorEmail];
 
-                    Offer newOffer = new Offer(offerId, vehicleType, hoursAvailable, price);
-                    listOfOffers.Add(newOffer);
+                    Offer newOffer = new Offer(offerId, routeNumber, hoursAvailable, price, contractor);
+                    ListOfOffers.Add(newOffer);
+                    ListOfRoutes[routeNumber].AddToList(newOffer);
                 }
             }
 
@@ -133,10 +176,11 @@ namespace FynbusProject
         {
             bool dataCleared = false;
 
-            listOfOffers.Clear();
-            listOfContractors.Clear();
+            ListOfOffers.Clear();
+            ListOfContractors.Clear();
+            ListOfRoutes.Clear();
 
-            if (listOfOffers.Count == 0 && listOfContractors.Count == 0)
+            if (ListOfOffers.Count == 0 && ListOfContractors.Count == 0 && ListOfRoutes.Count == 0)
             {
                 dataCleared = true;
             }

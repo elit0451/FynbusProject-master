@@ -24,10 +24,10 @@ namespace FynbusTests
             bool contractorFile = CSVImport.Instance.Import(contractorFilepath, fileType.CONTRACTORS);
 
             string contractorFilePath_wrong = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
-            bool wrongDataformat = CSVImport.Instance.Import(contractorFilePath_wrong, fileType.OFFERS);
+            bool wrongDataformat = CSVImport.Instance.Import(contractorFilePath_wrong, fileType.CONTRACTORS);
 
             Assert.IsTrue(contractorFile);
-            Assert.IsFalse(contractorFile);
+            Assert.IsFalse(wrongDataformat);
         }
     }
 }
