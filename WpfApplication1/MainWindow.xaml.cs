@@ -31,5 +31,25 @@ namespace GUI
                 MessageBox.Show("Oops! Something went wrong clearing the data, please try again");
             }
         }
+
+        private void button_ChooseContractorData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_ChooseOfferData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_ChooseRoutes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void button_Import_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
