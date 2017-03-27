@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FynbusProject
 {
@@ -17,6 +19,23 @@ namespace FynbusProject
         public void AddToList(Offer o)
         {
             ListOfOffers.Add(o);
+        }
+
+        public void SortListOfOffers()
+        {
+            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ToList();
+            ListOfOffers = sorted;
+        }
+
+        public double GetDifference()
+        {
+            double difference = 0;
+            if(ListOfOffers.Count > 1)
+            {
+                difference = ListOfOffers[1].Price - ListOfOffers[0].Price;
+            }
+
+            return difference;
         }
     }
 }
