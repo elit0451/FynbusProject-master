@@ -16,7 +16,7 @@ namespace FynbusTests
         }
 
         [TestMethod]
-        public void CanImportWrongRouteFile()
+        public void CannotImportWrongDataRouteFile()
         {
             string routeFilePath_wrong = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\Flex-Sortering 1.02\RouteNumbers.csv";
             bool wrongDataformat = CSVImport.Instance.Import(routeFilePath_wrong, fileType.CONTRACTORS);
@@ -34,7 +34,7 @@ namespace FynbusTests
         }
 
         [TestMethod]
-        public void CanImportWrongContractorFile()
+        public void CannotImportWrongContractorFile()
         {
             string contractorFilePath_wrong = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
             bool wrongDataformat = CSVImport.Instance.Import(contractorFilePath_wrong, fileType.CONTRACTORS);
@@ -42,7 +42,7 @@ namespace FynbusTests
             Assert.IsFalse(wrongDataformat);
         }
         [TestMethod]
-        public void ImportOfferFile()
+        public void CanImportOfferFile()
         {
 
             string offerFilepath = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
@@ -52,7 +52,7 @@ namespace FynbusTests
         }
 
         [TestMethod]
-        public void CanImportWrongOfferFile()
+        public void CannotImportWrongOfferFile()
         {
             string offerFilepath_wrong = @"C:\Users\Kast\Desktop\Fynbus\Flexcel_Fynbus\FakeData_Tests\Test med 3 bud til samme rute\Tilbud_FakeData.csv";
             bool wrongDataformat = CSVImport.Instance.Import(offerFilepath_wrong, fileType.CONTRACTORS);
@@ -66,5 +66,6 @@ namespace FynbusTests
             Route route = CSVImport.Instance.ListOfRoutes[1];
             Assert.AreEqual(3, route.ListOfOffers[0].OfferContractor.TypeV2);
         }
+
     }
 }
