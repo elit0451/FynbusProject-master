@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 
 namespace FynbusProject
 {
@@ -21,21 +19,11 @@ namespace FynbusProject
             ListOfOffers.Add(o);
         }
 
-        public void SortListOfOffers()
+        public override bool Equals(object obj)
         {
-            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ToList();
-            ListOfOffers = sorted;
-        }
-
-        public double GetDifference()
-        {
-            double difference = 0;
-            if(ListOfOffers.Count > 1)
-            {
-                difference = ListOfOffers[1].Price - ListOfOffers[0].Price;
-            }
-
-            return difference;
+            Route r = (Route)obj;
+            return (r.RouteNumber == this.RouteNumber &&
+                r.VehicleType == this.VehicleType);
         }
     }
 }
