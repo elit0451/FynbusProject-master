@@ -90,6 +90,11 @@ namespace FynbusProject
                 }
             }
 
+            if (ListOfRoutes.Count <= 0)
+            {
+                isRouteData = false;
+            }
+
             return isRouteData;
         }
 
@@ -131,6 +136,11 @@ namespace FynbusProject
                 }
             }
 
+            if (ListOfContractors.Count <= 0)
+            {
+                isContractorData = false;
+            }
+
             return isContractorData;
         }
 
@@ -167,6 +177,11 @@ namespace FynbusProject
                     ListOfOffers.Add(newOffer);
                     ListOfRoutes[routeNumber].AddToList(newOffer);
                 }
+            }
+
+            if(ListOfOffers.Count <= 0)
+            {
+                isOfferData = false;
             }
 
             return isOfferData;
