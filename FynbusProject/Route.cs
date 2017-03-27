@@ -18,5 +18,12 @@ namespace FynbusProject
         {
             ListOfOffers.Add(o);
         }
+
+        public override bool Equals(object obj)
+        {
+            Route r = (Route)obj;
+            return (r.RouteNumber == this.RouteNumber &&
+                r.VehicleType == this.VehicleType);
+        }
     }
 }
