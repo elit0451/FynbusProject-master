@@ -49,7 +49,7 @@ namespace FynbusTests
 
             //assert that right route is first in sorted list
             calculateWinner.SortRoutesByPriceDifference();
-            Assert.AreEqual(calculateWinner.Routes[1], r);
+            Assert.AreEqual(calculateWinner.Routes[0], r2);
         }
 
 
