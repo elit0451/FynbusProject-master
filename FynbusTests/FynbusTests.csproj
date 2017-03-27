@@ -55,6 +55,7 @@
     <Compile Include="ImportTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ClearDataTests.cs" />
+    <Compile Include="CalculateWinnerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FynbusProject\FynbusProject.csproj">

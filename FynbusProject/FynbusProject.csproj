@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalculateWinner.cs" />
     <Compile Include="Contractor.cs" />
     <Compile Include="CSVImport.cs" />
     <Compile Include="Offer.cs" />

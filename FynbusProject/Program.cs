@@ -1,4 +1,6 @@
-﻿namespace FynbusProject
+﻿using System;
+
+namespace FynbusProject
 {
     public class Program
     {
