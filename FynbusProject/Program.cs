@@ -20,10 +20,11 @@ namespace FynbusProject
             CSVImport.Instance.Import(filepathContractors, fileType.CONTRACTORS);
             CSVImport.Instance.Import(filepathOffers, fileType.OFFERS);
 
-            Route route = CSVImport.Instance.ListOfRoutes[2];
+            Route route = CSVImport.Instance.ListOfRoutes[1];
 
-            Console.WriteLine("routenr: " + route.RouteNumber + " OFFER ID: " + route.ListOfOffers[0].Id + " CONTRACTOR " + route.ListOfOffers[0].OfferContractor.EmailAddress + " VEH T2 : " + route.ListOfOffers[0].OfferContractor.TypeV2);
-
+            CalculateWinner cw = new CalculateWinner();
+            cw.SortOffersInRoutesByPriceAscending();
+            cw.SortRoutesByPriceDifference();
             Console.ReadKey();
         }
     }
