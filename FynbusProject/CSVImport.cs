@@ -172,8 +172,13 @@ namespace FynbusProject
                     double price = double.Parse(collumns[2]);
                     string contractorEmail = collumns[5];
                     Contractor contractor = ListOfContractors[contractorEmail];
+                    int priority = 10;
+                    if(collumns[7] != "")
+                    {
+                        priority = int.Parse(collumns[7]);
+                    }
 
-                    Offer newOffer = new Offer(offerId, routeNumber, hoursAvailable, price, contractor);
+                    Offer newOffer = new Offer(offerId, routeNumber, hoursAvailable, price, contractor, priority);
                     ListOfOffers.Add(newOffer);
                     ListOfRoutes[routeNumber].AddToList(newOffer);
                 }

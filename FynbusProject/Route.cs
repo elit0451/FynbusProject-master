@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FynbusProject
 {
@@ -20,7 +22,7 @@ namespace FynbusProject
         }
         public void SortListOfOffers()
         {
-            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ToList();
+            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ThenBy(p=> p.Priority).ToList();
             ListOfOffers = sorted;
         }
 
@@ -34,6 +36,7 @@ namespace FynbusProject
 
             return difference;
         }
+        
 
         public override bool Equals(object obj)
         {
