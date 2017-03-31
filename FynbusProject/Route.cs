@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace FynbusProject
@@ -8,6 +7,9 @@ namespace FynbusProject
     {
         public int RouteNumber { get; private set; }
         public int VehicleType { get; private set; }
+
+        public int AvailableHoursOnContractPeriod => AvaliableHours.GetAvaliableHours(RouteNumber);
+
         public List<Offer> ListOfOffers { get; private set; }
         public Route(int routeNb, int vehType)
         {
@@ -22,7 +24,7 @@ namespace FynbusProject
         }
         public void SortListOfOffers()
         {
-            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ThenBy(p=> p.Priority).ToList();
+            List<Offer> sorted = ListOfOffers.OrderBy(o => o.Price).ThenBy(p => p.Priority).ToList();
             ListOfOffers = sorted;
         }
 
@@ -36,7 +38,7 @@ namespace FynbusProject
 
             return difference;
         }
-        
+
 
         public override bool Equals(object obj)
         {

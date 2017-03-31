@@ -13,9 +13,11 @@ namespace FynbusProject
 {
     public class CSVImport
     {
-        public List<Offer> ListOfOffers { get; private set; }
+
+        public List<Offer> ListOfOffers
+        { get; private set; }
         public Dictionary<string, Contractor> ListOfContractors { get; private set; }
-        public Dictionary<int,Route> ListOfRoutes { get; private set; }
+        public Dictionary<int, Route> ListOfRoutes { get; private set; }
 
         private static CSVImport instance;
 
@@ -66,7 +68,7 @@ namespace FynbusProject
             //Get all the info from the CSV file
             string[] data = File.ReadAllLines(filepath, Encoding.GetEncoding("iso-8859-1"));
 
-            
+
             //Check if this is a header for the Route
             if (data[0].Contains("Garanti-vogn nr.;Vogntype"))
             {
@@ -82,9 +84,9 @@ namespace FynbusProject
                     //Get every collumn in that row
                     string[] collumns = row.Split(';');
 
-                    int routeNr  = int.Parse(collumns[0]);
+                    int routeNr = int.Parse(collumns[0]);
                     int vehType = int.Parse(collumns[1]);
-                    
+
                     Route newRoute = new Route(routeNr, vehType);
                     ListOfRoutes.Add(routeNr, newRoute);
                 }
@@ -122,7 +124,7 @@ namespace FynbusProject
 
                     string number = collumns[0];
                     string name = collumns[1];
-                    string  companyName = collumns[2];
+                    string companyName = collumns[2];
                     string email = collumns[3];
                     int type2 = int.Parse(collumns[4]);
                     int type3 = int.Parse(collumns[5]);
@@ -173,18 +175,20 @@ namespace FynbusProject
                     string contractorEmail = collumns[5];
                     Contractor contractor = ListOfContractors[contractorEmail];
                     int priority = 10;
-                    if(collumns[7] != "")
+                    if (collumns[7] != "")
                     {
                         priority = int.Parse(collumns[7]);
                     }
 
-                    Offer newOffer = new Offer(offerId, routeNumber, hoursAvailable, price, contractor, priority);
+
+
+                    Offer newOffer = new Offer(offerId, ListOfRoutes[routeNumber], hoursAvailable, price, contractor, priority);
                     ListOfOffers.Add(newOffer);
                     ListOfRoutes[routeNumber].AddToList(newOffer);
                 }
             }
 
-            if(ListOfOffers.Count <= 0)
+            if (ListOfOffers.Count <= 0)
             {
                 isOfferData = false;
             }
